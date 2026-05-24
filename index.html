@@ -90,6 +90,24 @@ nav.scrolled {
   color: var(--text); text-decoration: none; letter-spacing: 0.02em;
 }
 .nav-logo span { color: var(--accent); }
+.nav-logo-link {
+  display: flex; align-items: center; text-decoration: none;
+  transition: transform 0.3s var(--ease), filter 0.3s;
+  cursor: none; flex-shrink: 0;
+}
+.nav-logo-link:hover { transform: rotate(10deg) scale(1.08); filter: drop-shadow(0 0 8px rgba(200,169,110,0.5)); }
+/* MOBILE NAV ACTIONS (theme + hamburger group) */
+.nav-mobile-actions {
+  display: none; align-items: center; gap: 0.5rem;
+}
+.mobile-theme-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: none; border: 1px solid var(--border);
+  color: var(--text2); cursor: pointer;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.mobile-theme-btn:hover { border-color: var(--accent); color: var(--accent); }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 .nav-links a {
   font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600;
@@ -114,9 +132,10 @@ nav.scrolled {
   cursor: none;
 }
 .nav-logo-circle:hover { transform: rotate(10deg) scale(1.08); filter: drop-shadow(0 0 8px rgba(200,169,110,0.5)); }
+.light .nav-logo-link .nav-logo-inner { fill: #f8f5f0; }
 .light .nav-logo-circle circle:nth-child(2) { fill: #f8f5f0; }
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: none; background: none; border: none; }
-.hamburger span { display: block; width: 24px; height: 1px; background: var(--text); transition: all 0.3s; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: none; background: none; border: none; padding: 8px; margin-right: -8px; flex-shrink: 0; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
 /* HERO */
 #hero {
   position: relative; min-height: 100vh;
@@ -726,9 +745,11 @@ footer {
 /* ── MOBILE (≤768px) ── */
 @media (max-width: 768px) {
   /* NAV */
-  .nav-links, .nav-actions { display: none; }
-  .hamburger { display: flex; }
-  nav { padding: 0 4vw; }
+  .nav-links { display: none; }
+  .nav-actions { display: none !important; }
+  .nav-mobile-actions { display: flex !important; margin-left: auto; }
+  .hamburger { display: flex !important; visibility: visible !important; }
+  nav { padding: 0 5vw; overflow: visible; }
 
   /* HERO */
   #hero {
@@ -906,7 +927,17 @@ footer {
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#hero" class="nav-logo">Kishore<span>.</span></a>
+  <!-- LOGO (replaces text on all screens) -->
+  <a href="#hero" class="nav-logo-link">
+    <svg class="nav-logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="42" height="42">
+      <circle cx="24" cy="24" r="23" stroke="#c8a96e" stroke-width="1.5"/>
+      <circle cx="24" cy="24" r="18" fill="#0a0a10" class="nav-logo-inner"/>
+      <text x="24" y="21" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="8" fill="#c8a96e" letter-spacing="0.5">KA</text>
+      <text x="24" y="31" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="300" font-size="4.5" fill="#a09a92" letter-spacing="1.5">CREATIVE</text>
+      <line x1="12" y1="26" x2="36" y2="26" stroke="#c8a96e" stroke-width="0.6" opacity="0.4"/>
+    </svg>
+  </a>
+
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
@@ -915,21 +946,29 @@ footer {
     <li><a href="#services">Services</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+
+  <!-- DESKTOP ACTIONS -->
   <div class="nav-actions">
     <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">☀ Light</button>
-    <div class="nav-logo-circle">
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="42" height="42">
-        <circle cx="24" cy="24" r="23" stroke="#c8a96e" stroke-width="1.5"/>
-        <circle cx="24" cy="24" r="18" fill="#0a0a10"/>
-        <text x="24" y="21" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="8" fill="#c8a96e" letter-spacing="0.5">KA</text>
-        <text x="24" y="31" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="300" font-size="4.5" fill="#a09a92" letter-spacing="1.5">CREATIVE</text>
-        <line x1="12" y1="26" x2="36" y2="26" stroke="#c8a96e" stroke-width="0.6" opacity="0.4"/>
-      </svg>
-    </div>
   </div>
-  <button class="hamburger" onclick="openMobileNav()">
-    <span></span><span></span><span></span>
-  </button>
+
+  <!-- MOBILE RIGHT ACTIONS -->
+  <div class="nav-mobile-actions">
+    <button class="mobile-theme-btn" onclick="toggleTheme()" id="mobileThemeToggle" title="Toggle theme">
+      <!-- Sun icon (dark mode = show sun) -->
+      <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <!-- Moon icon (light mode = show moon) -->
+      <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="hamburger" onclick="openMobileNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -1689,6 +1728,14 @@ function toggleTheme() {
   isLight = !isLight;
   document.body.classList.toggle('light', isLight);
   document.getElementById('themeToggle').textContent = isLight ? '🌑 Dark' : '☀ Light';
+  // update mobile logo inner circle color
+  const inner = document.querySelector('.nav-logo-inner');
+  if (inner) inner.setAttribute('fill', isLight ? '#f8f5f0' : '#0a0a10');
+  // update mobile theme icon
+  const sun = document.querySelector('.theme-icon-sun');
+  const moon = document.querySelector('.theme-icon-moon');
+  if (sun) sun.style.display = isLight ? 'none' : 'block';
+  if (moon) moon.style.display = isLight ? 'block' : 'none';
 }
 
 // MOBILE NAV
