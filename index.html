@@ -942,6 +942,53 @@ footer {
   backdrop-filter:blur(4px);
 }
 
+/* LIGHTBOX */
+#lightboxModal {
+  display: none; position: fixed; inset: 0; z-index: 3000;
+  background: rgba(5,5,8,0.96); backdrop-filter: blur(20px);
+  align-items: center; justify-content: center;
+  padding: 20px;
+}
+#lightboxModal.open { display: flex; }
+.lightbox-inner {
+  position: relative; max-width: 95vw; max-height: 92vh;
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+}
+.lightbox-inner img {
+  max-width: 100%; max-height: 82vh;
+  object-fit: contain; border-radius: 8px;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+  border: 1px solid rgba(200,169,110,0.2);
+}
+.lightbox-caption {
+  font-family: var(--font-ui); font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text2); text-align: center;
+}
+.lightbox-close {
+  position: absolute; top: -2.5rem; right: 0;
+  background: none; border: none; color: var(--text2);
+  font-family: var(--font-ui); font-size: 0.85rem; font-weight: 600;
+  letter-spacing: 0.12em; cursor: pointer;
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: color 0.2s;
+}
+.lightbox-close:hover { color: var(--accent); }
+.lightbox-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.25s var(--ease); font-size: 1.1rem;
+}
+.lightbox-nav:hover { background: var(--accent); border-color: var(--accent); color: #050508; }
+.lightbox-prev { left: -60px; }
+.lightbox-next { right: -60px; }
+@media (max-width: 768px) {
+  .lightbox-prev { left: -14px; }
+  .lightbox-next { right: -14px; }
+}
+
 /* THUMB COLORS */
 .t1 { background: linear-gradient(135deg, #1a0e3a 0%, #2d1b69 100%); }
 .t2 { background: linear-gradient(135deg, #0d2a1a 0%, #1a5c35 100%); }
@@ -1149,25 +1196,39 @@ footer {
       </div>
     </div>
 
-    <div class="project-card reveal reveal-delay-1" data-cat="graphic">
+    <!-- GRAPHIC 1: THARABU Horizontal -->
+    <div class="project-card reveal reveal-delay-1" data-cat="graphic" onclick="openLightbox('THARABU_horizental.jpg','Tharabu — Pittala Borra Jalabatham (Horizontal)')" style="cursor:pointer;">
       <div class="project-thumb">
-        <div class="thumb-placeholder t2">
-          <div class="thumb-icon">🖼</div>
-          <div class="thumb-label">Thumbnail Design</div>
-          <div class="thumb-num">02</div>
-        </div>
-        <div class="project-overlay">
-          <div class="play-btn">👁</div>
+        <img src="THARABU_horizental.jpg" alt="Tharabu Horizontal" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay"><div class="play-btn">🔍</div></div>
+        <div class="yt-badge" style="background:rgba(200,169,110,0.85);color:#050508;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="#050508"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-11-5l2.03 2.71L15 13l4 5H5l5-6z"/></svg>
+          View Full
         </div>
       </div>
       <div class="project-info">
         <div class="project-category">Graphic Design</div>
-        <div class="project-title">YouTube Thumbnail Pack — Tech Channel</div>
-        <div class="project-desc">High-CTR thumbnail series with bold typography, dynamic compositions, and consistent brand language.</div>
-        <div class="project-tools">
-          <span class="tool-chip">Photoshop</span>
-          <span class="tool-chip">Illustrator</span>
+        <div class="project-title">Tharabu — Pittala Borra Jalabatham</div>
+        <div class="project-desc">Cinematic YouTube thumbnail design for a travel vlog featuring Pittala Borra waterfalls with nature-integrated typography.</div>
+        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
+      </div>
+    </div>
+
+    <!-- GRAPHIC 2: THARABU Vertical -->
+    <div class="project-card reveal reveal-delay-2" data-cat="graphic" onclick="openLightbox('THARABU.jpg','Tharabu — Pittala Borra Jalabatham (Vertical)')" style="cursor:pointer;">
+      <div class="project-thumb">
+        <img src="THARABU.jpg" alt="Tharabu Vertical" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay"><div class="play-btn">🔍</div></div>
+        <div class="yt-badge" style="background:rgba(200,169,110,0.85);color:#050508;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="#050508"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-11-5l2.03 2.71L15 13l4 5H5l5-6z"/></svg>
+          View Full
         </div>
+      </div>
+      <div class="project-info">
+        <div class="project-category">Graphic Design</div>
+        <div class="project-title">Tharabu — Vertical Format</div>
+        <div class="project-desc">Portrait version of the Tharabu thumbnail, optimized for YouTube Shorts and mobile display.</div>
+        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
       </div>
     </div>
 
@@ -1293,11 +1354,89 @@ footer {
       </div>
     </div>
 
-    <!-- VIDEO 5 -->
-    <div class="project-card reveal reveal-delay-1" data-cat="video" onclick="window.open('https://youtu.be/uS2E0p8jVJg','_blank')" style="cursor:pointer;">
+    <!-- MOTION GRAPHICS 1 (moved from video) -->
+    <div class="project-card reveal reveal-delay-1" data-cat="motion" onclick="window.open('https://youtu.be/uS2E0p8jVJg','_blank')" style="cursor:pointer;">
       <div class="project-thumb">
         <img src="https://img.youtube.com/vi/uS2E0p8jVJg/maxresdefault.jpg"
              onerror="this.src='https://img.youtube.com/vi/uS2E0p8jVJg/hqdefault.jpg'"
+             alt="Motion Graphics 1 — YouTube"
+             style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="yt-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="#E8272A"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg>
+          Watch on YouTube
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-category">Motion Graphics</div>
+        <div class="project-title">Motion Graphics — Vol. 1</div>
+        <div class="project-desc">Dynamic motion graphics with fluid animations, expressive typography, and polished visual effects.</div>
+        <div class="project-tools">
+          <span class="tool-chip">After Effects</span>
+          <span class="tool-chip">Premiere Pro</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOTION GRAPHICS 2 -->
+    <div class="project-card reveal reveal-delay-2" data-cat="motion" onclick="window.open('https://youtube.com/shorts/kgQKQaqtTPQ','_blank')" style="cursor:pointer;">
+      <div class="project-thumb">
+        <img src="https://img.youtube.com/vi/kgQKQaqtTPQ/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/kgQKQaqtTPQ/hqdefault.jpg'"
+             alt="Motion Graphics 2 — YouTube"
+             style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="yt-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="#E8272A"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg>
+          Watch on YouTube
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-category">Motion Graphics</div>
+        <div class="project-title">Motion Graphics — Vol. 2</div>
+        <div class="project-desc">Creative short-form motion graphic reel with kinetic typography and smooth animated transitions.</div>
+        <div class="project-tools">
+          <span class="tool-chip">After Effects</span>
+          <span class="tool-chip">Illustrator</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOTION GRAPHICS 3 -->
+    <div class="project-card reveal" data-cat="motion" onclick="window.open('https://youtube.com/shorts/PjP1JuuaCr4','_blank')" style="cursor:pointer;">
+      <div class="project-thumb">
+        <img src="https://img.youtube.com/vi/PjP1JuuaCr4/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/PjP1JuuaCr4/hqdefault.jpg'"
+             alt="Motion Graphics 3 — YouTube"
+             style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="yt-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="#E8272A"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg>
+          Watch on YouTube
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-category">Motion Graphics</div>
+        <div class="project-title">Motion Graphics — Vol. 3</div>
+        <div class="project-desc">Bold motion design with eye-catching animations, smooth transitions, and vibrant visual storytelling.</div>
+        <div class="project-tools">
+          <span class="tool-chip">After Effects</span>
+          <span class="tool-chip">Premiere Pro</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDEO 5 -->
+    <div class="project-card reveal" data-cat="video" onclick="window.open('https://youtube.com/shorts/1rOl2g5ve14','_blank')" style="cursor:pointer;">
+      <div class="project-thumb">
+        <img src="https://img.youtube.com/vi/1rOl2g5ve14/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/1rOl2g5ve14/hqdefault.jpg'"
              alt="Video Editing 5 — YouTube"
              style="width:100%;height:100%;object-fit:cover;display:block;">
         <div class="project-overlay">
@@ -1319,26 +1458,181 @@ footer {
       </div>
     </div>
 
-    <!-- GRAPHIC DESIGN -->
-    <div class="project-card reveal reveal-delay-2" data-cat="graphic">
+    <!-- VIDEO 6 -->
+    <div class="project-card reveal reveal-delay-1" data-cat="video" onclick="window.open('https://youtube.com/shorts/K3w6NYGY3xc','_blank')" style="cursor:pointer;">
       <div class="project-thumb">
-        <div class="thumb-placeholder t6">
-          <div class="thumb-icon">🎨</div>
-          <div class="thumb-label">Social Media</div>
-          <div class="thumb-num">06</div>
-        </div>
+        <img src="https://img.youtube.com/vi/K3w6NYGY3xc/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/K3w6NYGY3xc/hqdefault.jpg'"
+             alt="Video Editing 6 — YouTube"
+             style="width:100%;height:100%;object-fit:cover;display:block;">
         <div class="project-overlay">
-          <div class="play-btn">👁</div>
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="yt-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="#E8272A"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg>
+          Watch on YouTube
         </div>
       </div>
       <div class="project-info">
-        <div class="project-category">Social Media Design</div>
-        <div class="project-title">Social Media Content Pack</div>
-        <div class="project-desc">30-day Instagram content calendar with posts, stories, and highlight covers for a fitness influencer.</div>
+        <div class="project-category">Video Editing</div>
+        <div class="project-title">Video Edit — Vol. 6</div>
+        <div class="project-desc">High-impact short-form video with snappy cuts, trending transitions, and on-brand visual style.</div>
         <div class="project-tools">
-          <span class="tool-chip">Photoshop</span>
-          <span class="tool-chip">Canva</span>
+          <span class="tool-chip">Premiere Pro</span>
+          <span class="tool-chip">After Effects</span>
         </div>
+      </div>
+    </div>
+
+    <!-- VIDEO 7 -->
+    <div class="project-card reveal reveal-delay-2" data-cat="video" onclick="window.open('https://youtube.com/shorts/7N504wZ6o_0','_blank')" style="cursor:pointer;">
+      <div class="project-thumb">
+        <img src="https://img.youtube.com/vi/7N504wZ6o_0/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/7N504wZ6o_0/hqdefault.jpg'"
+             alt="Video Editing 7 — YouTube"
+             style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="yt-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="#E8272A"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg>
+          Watch on YouTube
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-category">Video Editing</div>
+        <div class="project-title">Video Edit — Vol. 7</div>
+        <div class="project-desc">Creative short reel with fluid motion, vibrant color grading, and captivating visual rhythm.</div>
+        <div class="project-tools">
+          <span class="tool-chip">Premiere Pro</span>
+          <span class="tool-chip">DaVinci Resolve</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAPHIC 3: ADIYOGI Telugu -->
+    <div class="project-card reveal" data-cat="graphic" onclick="openLightbox('ADIYOGI_TELUGU.jpg','60 Feet Adiyogi — Telugu Thumbnail')" style="cursor:pointer;">
+      <div class="project-thumb">
+        <img src="ADIYOGI_TELUGU.jpg" alt="Adiyogi Telugu" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay"><div class="play-btn">🔍</div></div>
+        <div class="yt-badge" style="background:rgba(200,169,110,0.85);color:#050508;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="#050508"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-11-5l2.03 2.71L15 13l4 5H5l5-6z"/></svg>
+          View Full
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-category">Graphic Design</div>
+        <div class="project-title">60 Feet Adiyogi — Telugu</div>
+        <div class="project-desc">Bold YouTube thumbnail for the Adiyogi documentary featuring dramatic typography and cinematic composition in Telugu.</div>
+        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
+      </div>
+    </div>
+
+    <!-- GRAPHIC 4: ADIYOGI English -->
+    <div class="project-card reveal reveal-delay-1" data-cat="graphic" onclick="openLightbox('ADIYOGI_ENGLISH.jpg','60 Feet Adiyogi — English Thumbnail')" style="cursor:pointer;">
+      <div class="project-thumb">
+        <img src="ADIYOGI_ENGLISH.jpg" alt="Adiyogi English" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay"><div class="play-btn">🔍</div></div>
+        <div class="yt-badge" style="background:rgba(200,169,110,0.85);color:#050508;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="#050508"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-11-5l2.03 2.71L15 13l4 5H5l5-6z"/></svg>
+          View Full
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-category">Graphic Design</div>
+        <div class="project-title">60 Feet Adiyogi — English</div>
+        <div class="project-desc">English version of the Adiyogi thumbnail with the same cinematic style adapted for a wider international audience.</div>
+        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
+      </div>
+    </div>
+
+    <!-- GRAPHIC 5: Rajahmundry Final -->
+    <div class="project-card reveal reveal-delay-2" data-cat="graphic" onclick="openLightbox('rjy_fainal.jpg','Rajahmundry — Maro Ujjayini Thumbnail')" style="cursor:pointer;">
+      <div class="project-thumb">
+        <img src="rjy_fainal.jpg" alt="Rajahmundry Final" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay"><div class="play-btn">🔍</div></div>
+        <div class="yt-badge" style="background:rgba(200,169,110,0.85);color:#050508;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="#050508"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-11-5l2.03 2.71L15 13l4 5H5l5-6z"/></svg>
+          View Full
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-category">Graphic Design</div>
+        <div class="project-title">Rajahmundry — Maro Ujjayini</div>
+        <div class="project-desc">Stunning thumbnail featuring the iconic temple architecture of Rajahmundry with rich golden tones and bold Telugu text.</div>
+        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
+      </div>
+    </div>
+
+    <!-- GRAPHIC 6: The King -->
+    <div class="project-card reveal" data-cat="graphic" onclick="openLightbox('the_king.jpg','The King — 8K Ultra HD Thumbnail')" style="cursor:pointer;">
+      <div class="project-thumb">
+        <img src="the_king.jpg" alt="The King" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay"><div class="play-btn">🔍</div></div>
+        <div class="yt-badge" style="background:rgba(200,169,110,0.85);color:#050508;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="#050508"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-11-5l2.03 2.71L15 13l4 5H5l5-6z"/></svg>
+          View Full
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-category">Graphic Design</div>
+        <div class="project-title">The King — 8K Ultra HD</div>
+        <div class="project-desc">Dramatic 8K thumbnail design featuring a majestic lion with cinematic lighting, bold typography, and high-impact visual composition.</div>
+        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Lightroom</span></div>
+      </div>
+    </div>
+
+    <!-- GRAPHIC 7: Sharanya Birthday -->
+    <div class="project-card reveal reveal-delay-1" data-cat="graphic" onclick="openLightbox('1_Sharanya.jpg','Happy Birthday Sharanya — 1st Birthday Poster')" style="cursor:pointer;">
+      <div class="project-thumb">
+        <img src="1_Sharanya.jpg" alt="Sharanya Birthday" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay"><div class="play-btn">🔍</div></div>
+        <div class="yt-badge" style="background:rgba(200,169,110,0.85);color:#050508;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="#050508"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-11-5l2.03 2.71L15 13l4 5H5l5-6z"/></svg>
+          View Full
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-category">Graphic Design</div>
+        <div class="project-title">Happy Birthday Sharanya — 1st Birthday</div>
+        <div class="project-desc">Elegant 1st birthday poster with photo collage inside the number "1", soft floral elements and warm pastel tones.</div>
+        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Canva</span></div>
+      </div>
+    </div>
+
+    <!-- GRAPHIC 8: Abhi Birthday Calendar -->
+    <div class="project-card reveal reveal-delay-2" data-cat="graphic" onclick="openLightbox('1_Abhi.jpg','Happy Birthday Abhi Sree — Birthday Calendar Poster')" style="cursor:pointer;">
+      <div class="project-thumb">
+        <img src="1_Abhi.jpg" alt="Abhi Birthday Calendar" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay"><div class="play-btn">🔍</div></div>
+        <div class="yt-badge" style="background:rgba(200,169,110,0.85);color:#050508;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="#050508"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-11-5l2.03 2.71L15 13l4 5H5l5-6z"/></svg>
+          View Full
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-category">Graphic Design</div>
+        <div class="project-title">Happy Birthday Abhi Sree — Calendar Poster</div>
+        <div class="project-desc">Creative birthday calendar poster combining multi-photo collage layout with elegant typography and a personalized calendar for March 2026.</div>
+        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
+      </div>
+    </div>
+
+    <!-- GRAPHIC 9: Bhanu Birthday -->
+    <div class="project-card reveal" data-cat="graphic" onclick="openLightbox('bhanu.jpg','Happy Birthday Bhanu Manikanta — 5th Birthday Poster')" style="cursor:pointer;">
+      <div class="project-thumb">
+        <img src="bhanu.jpg" alt="Bhanu Birthday" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="project-overlay"><div class="play-btn">🔍</div></div>
+        <div class="yt-badge" style="background:rgba(200,169,110,0.85);color:#050508;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="#050508"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-11-5l2.03 2.71L15 13l4 5H5l5-6z"/></svg>
+          View Full
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-category">Graphic Design</div>
+        <div class="project-title">Happy Birthday Bhanu Manikanta — 5th</div>
+        <div class="project-desc">Cinematic movie-poster style 5th birthday design with dual-photo composition, metallic 3D text, and premium blue-steel tones.</div>
+        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
       </div>
     </div>
 
@@ -2024,5 +2318,68 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     </div>
   </div>
 </div>
+<!-- LIGHTBOX MODAL -->
+<div id="lightboxModal" onclick="closeLightboxOnBg(event)">
+  <div class="lightbox-inner" id="lightboxInner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕ CLOSE</button>
+    <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">&#8249;</button>
+    <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">&#8250;</button>
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+<script>
+// LIGHTBOX
+const graphicImages = [
+  { src: 'THARABU_horizental.jpg', caption: 'Tharabu — Pittala Borra Jalabatham (Horizontal)' },
+  { src: 'THARABU.jpg', caption: 'Tharabu — Pittala Borra Jalabatham (Vertical)' },
+  { src: 'ADIYOGI_TELUGU.jpg', caption: '60 Feet Adiyogi — Telugu Thumbnail' },
+  { src: 'ADIYOGI_ENGLISH.jpg', caption: '60 Feet Adiyogi — English Thumbnail' },
+  { src: 'rjy_fainal.jpg', caption: 'Rajahmundry — Maro Ujjayini' },
+  { src: 'the_king.jpg', caption: 'The King — 8K Ultra HD' },
+  { src: '1_Sharanya.jpg', caption: 'Happy Birthday Sharanya — 1st Birthday' },
+  { src: '1_Abhi.jpg', caption: 'Happy Birthday Abhi Sree — Calendar Poster' },
+  { src: 'bhanu.jpg', caption: 'Happy Birthday Bhanu Manikanta — 5th Birthday' },
+];
+let lbIndex = 0;
+
+function openLightbox(src, caption) {
+  lbIndex = graphicImages.findIndex(i => i.src === src);
+  if (lbIndex === -1) lbIndex = 0;
+  setLightboxImage(lbIndex);
+  document.getElementById('lightboxModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function setLightboxImage(idx) {
+  const item = graphicImages[idx];
+  document.getElementById('lightboxImg').src = item.src;
+  document.getElementById('lightboxCaption').textContent = item.caption;
+}
+
+function lightboxNav(dir) {
+  lbIndex = (lbIndex + dir + graphicImages.length) % graphicImages.length;
+  setLightboxImage(lbIndex);
+}
+
+function closeLightbox() {
+  document.getElementById('lightboxModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeLightboxOnBg(e) {
+  if (e.target === document.getElementById('lightboxModal')) closeLightbox();
+}
+
+document.addEventListener('keydown', e => {
+  const modal = document.getElementById('lightboxModal');
+  if (!modal.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lightboxNav(-1);
+  if (e.key === 'ArrowRight') lightboxNav(1);
+});
+</script>
+
 </body>
 </html>
