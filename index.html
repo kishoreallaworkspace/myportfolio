@@ -683,9 +683,9 @@ footer {
 }
 /* MOBILE NAV */
 .mobile-nav-overlay {
-  display: none; position: fixed; top: 0; right: 0; bottom: 0; z-index: 998;
+  display: none; position: fixed; top: 0; right: 0; bottom: 0; z-index: 1001;
   width: min(280px, 80vw);
-  background: rgba(10,10,16,0.98); backdrop-filter: blur(24px);
+  background: var(--bg2); color: var(--text); backdrop-filter: blur(24px);
   border-left: 1px solid var(--border);
   flex-direction: column; align-items: flex-start; justify-content: center;
   gap: 0; padding: 5rem 2rem 2rem;
@@ -728,8 +728,29 @@ footer {
 }
 .mobile-close:hover { border-color: var(--accent); color: var(--accent); }
 .mobile-nav-backdrop {
-  display: none; position: fixed; inset: 0; z-index: 997;
+  display: none; position: fixed; inset: 0; z-index: 1000;
   background: rgba(0,0,0,0.5);
+}
+body.light .mobile-nav-overlay {
+  background: var(--bg2) !important;
+  box-shadow: -20px 0 60px rgba(0,0,0,0.12) !important;
+}
+body.light .mobile-nav-backdrop { background: rgba(0,0,0,0.25); }
+body.light .mobile-close { color: var(--text2); border-color: var(--border); background: rgba(0,0,0,0.02); }
+body.light .mobile-close:hover { border-color: var(--accent); color: var(--accent); }
+body.light .mobile-nav-logo { color: var(--text); }
+body.light .mobile-nav-overlay a { color: var(--text2); border-bottom-color: var(--border); }
+body.light .mobile-nav-overlay a:hover { color: var(--accent); }
+body.light .mobile-nav-overlay a::before { background: var(--accent); }
+body.nav-open .nav-mobile-actions {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: none;
+}
+body.nav-open .mobile-theme-btn,
+body.nav-open .hamburger {
+  pointer-events: none;
 }
 .mobile-nav-backdrop.open { display: block; }
 /* RESPONSIVE */
@@ -1189,10 +1210,6 @@ footer {
         <div class="project-category">Video Editing</div>
         <div class="project-title">Cinematic Vlog — Travel Series</div>
         <div class="project-desc">Long-form YouTube travel documentary with dynamic cuts, color grading, and atmospheric sound design.</div>
-        <div class="project-tools">
-          <span class="tool-chip">Premiere Pro</span>
-          <span class="tool-chip">After Effects</span>
-        </div>
       </div>
     </div>
 
@@ -1210,7 +1227,6 @@ footer {
         <div class="project-category">Graphic Design</div>
         <div class="project-title">Tharabu — Pittala Borra Jalabatham</div>
         <div class="project-desc">Cinematic YouTube thumbnail design for a travel vlog featuring Pittala Borra waterfalls with nature-integrated typography.</div>
-        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
       </div>
     </div>
 
@@ -1228,7 +1244,6 @@ footer {
         <div class="project-category">Graphic Design</div>
         <div class="project-title">Tharabu — Vertical Format</div>
         <div class="project-desc">Portrait version of the Tharabu thumbnail, optimized for YouTube Shorts and mobile display.</div>
-        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
       </div>
     </div>
 
@@ -1247,10 +1262,6 @@ footer {
         <div class="project-category">Motion Graphics</div>
         <div class="project-title">Brand Intro Animation</div>
         <div class="project-desc">Animated logo reveal and lower-thirds package for a corporate YouTube channel with 100K+ subscribers.</div>
-        <div class="project-tools">
-          <span class="tool-chip">After Effects</span>
-          <span class="tool-chip">Illustrator</span>
-        </div>
       </div>
     </div>
 
@@ -1269,10 +1280,6 @@ footer {
         <div class="project-category">Branding</div>
         <div class="project-title">Complete Brand Identity — Startup</div>
         <div class="project-desc">Full visual identity including logo, color palette, typography system, and social media kit for a D2C brand.</div>
-        <div class="project-tools">
-          <span class="tool-chip">Illustrator</span>
-          <span class="tool-chip">Photoshop</span>
-        </div>
       </div>
     </div>
 
@@ -1295,10 +1302,6 @@ footer {
         <div class="project-category">Video Editing</div>
         <div class="project-title">Video Edit — Vol. 2</div>
         <div class="project-desc">Creative video edit with seamless transitions, dynamic pacing, and cinematic color grading.</div>
-        <div class="project-tools">
-          <span class="tool-chip">Premiere Pro</span>
-          <span class="tool-chip">After Effects</span>
-        </div>
       </div>
     </div>
 
@@ -1321,10 +1324,6 @@ footer {
         <div class="project-category">Video Editing</div>
         <div class="project-title">Video Edit — Vol. 3</div>
         <div class="project-desc">High-energy edit with precise beat-synced cuts, motion graphics overlays, and immersive sound design.</div>
-        <div class="project-tools">
-          <span class="tool-chip">Premiere Pro</span>
-          <span class="tool-chip">DaVinci Resolve</span>
-        </div>
       </div>
     </div>
 
@@ -1347,10 +1346,6 @@ footer {
         <div class="project-category">Video Editing</div>
         <div class="project-title">Video Edit — Vol. 4</div>
         <div class="project-desc">Visually rich edit featuring stylized color grading, smooth transitions, and compelling visual storytelling.</div>
-        <div class="project-tools">
-          <span class="tool-chip">Premiere Pro</span>
-          <span class="tool-chip">After Effects</span>
-        </div>
       </div>
     </div>
 
@@ -1373,10 +1368,6 @@ footer {
         <div class="project-category">Motion Graphics</div>
         <div class="project-title">Motion Graphics — Vol. 1</div>
         <div class="project-desc">Dynamic motion graphics with fluid animations, expressive typography, and polished visual effects.</div>
-        <div class="project-tools">
-          <span class="tool-chip">After Effects</span>
-          <span class="tool-chip">Premiere Pro</span>
-        </div>
       </div>
     </div>
 
@@ -1399,10 +1390,6 @@ footer {
         <div class="project-category">Motion Graphics</div>
         <div class="project-title">Motion Graphics — Vol. 2</div>
         <div class="project-desc">Creative short-form motion graphic reel with kinetic typography and smooth animated transitions.</div>
-        <div class="project-tools">
-          <span class="tool-chip">After Effects</span>
-          <span class="tool-chip">Illustrator</span>
-        </div>
       </div>
     </div>
 
@@ -1425,10 +1412,6 @@ footer {
         <div class="project-category">Motion Graphics</div>
         <div class="project-title">Motion Graphics — Vol. 3</div>
         <div class="project-desc">Bold motion design with eye-catching animations, smooth transitions, and vibrant visual storytelling.</div>
-        <div class="project-tools">
-          <span class="tool-chip">After Effects</span>
-          <span class="tool-chip">Premiere Pro</span>
-        </div>
       </div>
     </div>
 
@@ -1451,10 +1434,6 @@ footer {
         <div class="project-category">Video Editing</div>
         <div class="project-title">Video Edit — Vol. 5</div>
         <div class="project-desc">Engaging short-form edit with punchy rhythm cuts, expressive typography, and polished finishing touches.</div>
-        <div class="project-tools">
-          <span class="tool-chip">Premiere Pro</span>
-          <span class="tool-chip">Canva</span>
-        </div>
       </div>
     </div>
 
@@ -1477,10 +1456,6 @@ footer {
         <div class="project-category">Video Editing</div>
         <div class="project-title">Video Edit — Vol. 6</div>
         <div class="project-desc">High-impact short-form video with snappy cuts, trending transitions, and on-brand visual style.</div>
-        <div class="project-tools">
-          <span class="tool-chip">Premiere Pro</span>
-          <span class="tool-chip">After Effects</span>
-        </div>
       </div>
     </div>
 
@@ -1503,10 +1478,6 @@ footer {
         <div class="project-category">Video Editing</div>
         <div class="project-title">Video Edit — Vol. 7</div>
         <div class="project-desc">Creative short reel with fluid motion, vibrant color grading, and captivating visual rhythm.</div>
-        <div class="project-tools">
-          <span class="tool-chip">Premiere Pro</span>
-          <span class="tool-chip">DaVinci Resolve</span>
-        </div>
       </div>
     </div>
 
@@ -1524,7 +1495,6 @@ footer {
         <div class="project-category">Graphic Design</div>
         <div class="project-title">60 Feet Adiyogi — Telugu</div>
         <div class="project-desc">Bold YouTube thumbnail for the Adiyogi documentary featuring dramatic typography and cinematic composition in Telugu.</div>
-        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
       </div>
     </div>
 
@@ -1542,7 +1512,6 @@ footer {
         <div class="project-category">Graphic Design</div>
         <div class="project-title">60 Feet Adiyogi — English</div>
         <div class="project-desc">English version of the Adiyogi thumbnail with the same cinematic style adapted for a wider international audience.</div>
-        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
       </div>
     </div>
 
@@ -1560,7 +1529,6 @@ footer {
         <div class="project-category">Graphic Design</div>
         <div class="project-title">Rajahmundry — Maro Ujjayini</div>
         <div class="project-desc">Stunning thumbnail featuring the iconic temple architecture of Rajahmundry with rich golden tones and bold Telugu text.</div>
-        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
       </div>
     </div>
 
@@ -1578,7 +1546,6 @@ footer {
         <div class="project-category">Graphic Design</div>
         <div class="project-title">The King — 8K Ultra HD</div>
         <div class="project-desc">Dramatic 8K thumbnail design featuring a majestic lion with cinematic lighting, bold typography, and high-impact visual composition.</div>
-        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Lightroom</span></div>
       </div>
     </div>
 
@@ -1596,7 +1563,6 @@ footer {
         <div class="project-category">Graphic Design</div>
         <div class="project-title">Happy Birthday Sharanya — 1st Birthday</div>
         <div class="project-desc">Elegant 1st birthday poster with photo collage inside the number "1", soft floral elements and warm pastel tones.</div>
-        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Canva</span></div>
       </div>
     </div>
 
@@ -1614,7 +1580,6 @@ footer {
         <div class="project-category">Graphic Design</div>
         <div class="project-title">Happy Birthday Abhi Sree — Calendar Poster</div>
         <div class="project-desc">Creative birthday calendar poster combining multi-photo collage layout with elegant typography and a personalized calendar for March 2026.</div>
-        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
       </div>
     </div>
 
@@ -1632,7 +1597,6 @@ footer {
         <div class="project-category">Graphic Design</div>
         <div class="project-title">Happy Birthday Bhanu Manikanta — 5th</div>
         <div class="project-desc">Cinematic movie-poster style 5th birthday design with dual-photo composition, metallic 3D text, and premium blue-steel tones.</div>
-        <div class="project-tools"><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span></div>
       </div>
     </div>
 
@@ -2140,11 +2104,21 @@ function toggleTheme() {
 function openMobileNav() {
   document.getElementById('mobileNav').classList.add('open');
   document.getElementById('mobileNavBackdrop').classList.add('open');
+  document.body.classList.add('nav-open');
+  const mobileThemeBtn = document.getElementById('mobileThemeToggle');
+  const hamburgerBtn = document.querySelector('.hamburger');
+  if (mobileThemeBtn) mobileThemeBtn.disabled = true;
+  if (hamburgerBtn) hamburgerBtn.disabled = true;
   document.body.style.overflow = 'hidden';
 }
 function closeMobileNav() {
   document.getElementById('mobileNav').classList.remove('open');
   document.getElementById('mobileNavBackdrop').classList.remove('open');
+  document.body.classList.remove('nav-open');
+  const mobileThemeBtn = document.getElementById('mobileThemeToggle');
+  const hamburgerBtn = document.querySelector('.hamburger');
+  if (mobileThemeBtn) mobileThemeBtn.disabled = false;
+  if (hamburgerBtn) hamburgerBtn.disabled = false;
   document.body.style.overflow = '';
 }
 
